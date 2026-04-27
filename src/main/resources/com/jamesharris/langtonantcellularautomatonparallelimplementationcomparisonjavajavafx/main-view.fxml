@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.canvas.Canvas?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.jamesharris.langtonantcellularautomatonparallelimplementationcomparisonjavajavafx.Controllers.Main_Controller">
+
+    <top>
+        <HBox spacing="10" alignment="CENTER"
+              style="-fx-padding: 10; -fx-background-color: #2b2b2b; -fx-border-color: #1e1e1e;">
+
+            <Button text="Run Auto-Benchmark" onAction="#handleAutomatedEvaluation"
+                    style="-fx-background-color: #3e4a3e; -fx-text-fill: white;"/>
+
+            <Button text="Start" onAction="#handleStart"/>
+            <Button text="Stop" onAction="#handleStop"/>
+            <Button text="Reset" onAction="#handleReset"/>
+
+            <Separator orientation="VERTICAL"/>
+
+            <Label text="Mode:" style="-fx-text-fill:white;"/>
+            <Label fx:id="modeLabel" text="SEQUENTIAL"
+                   style="-fx-text-fill:white; -fx-font-weight:bold;"/>
+
+            <Button text="Toggle Mode" onAction="#handleToggleMode"/>
+
+            <Separator orientation="VERTICAL"/>
+
+            <Label text="Speed:" style="-fx-text-fill:white;"/>
+            <Slider fx:id="speedSlider" min="1" max="200" value="50"/>
+
+            <Label text="Steps:" style="-fx-text-fill:white;"/>
+            <TextField fx:id="stepsField" prefWidth="60" text="1000"/>
+
+            <Label text="Ants:" style="-fx-text-fill:white;"/>
+            <TextField fx:id="antCountField" prefWidth="60" text="4"/>
+
+            <Label text="Grid:" style="-fx-text-fill:white;"/>
+            <TextField fx:id="gridSizeField" prefWidth="70" text="200"/>
+        </HBox>
+    </top>
+
+    <center>
+        <HBox>
+
+            <!-- CANVAS -->
+            <StackPane HBox.hgrow="ALWAYS"
+                       style="-fx-background-color:#1e1e1e; -fx-padding:10;">
+                <Canvas fx:id="simulationCanvas" width="900" height="650"/>
+            </StackPane>
+
+            <VBox prefWidth="320" spacing="10"
+                  style="-fx-padding:10; -fx-background-color:#252526;">
+
+                <Label text="Simulation Info"
+                       style="-fx-text-fill:white; -fx-font-weight:bold;"/>
+
+                <Label text="Current Ants:" style="-fx-text-fill:#aaa;"/>
+                <Label fx:id="currentAntCountLabel"
+                       text="0"
+                       style="-fx-text-fill:white; -fx-font-size:14;"/>
+
+                <Separator/>
+
+                <Label text="Benchmark Results"
+                       style="-fx-text-fill:white; -fx-font-weight:bold;"/>
+
+                <ScrollPane fitToWidth="true"
+                            hbarPolicy="NEVER"
+                            prefHeight="400">
+
+                    <VBox fx:id="resultsContainer"
+                          spacing="6"
+                          style="-fx-padding:10;"/>
+                </ScrollPane>
+
+                <HBox spacing="10">
+                    <Button text="Export Results" onAction="#handleExportResults"/>
+                    <Button text="Clear Results" onAction="#handleClearResults"/>
+                </HBox>
+            </VBox>
+
+        </HBox>
+    </center>
+
+    <bottom>
+        <HBox alignment="CENTER" spacing="15"
+              style="-fx-padding:10; -fx-background-color:#2b2b2b;">
+
+            <Label text="Performance:" style="-fx-text-fill:#ccc;"/>
+            <Label fx:id="performanceLabel" text="0 ms"
+                   style="-fx-text-fill:white; -fx-font-weight:bold;"/>
+        </HBox>
+    </bottom>
+
+</BorderPane>
